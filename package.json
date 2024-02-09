@@ -1,0 +1,20 @@
+{
+	"name": "weather-forecast-and-traffic-cam",
+	"version": "1.0.0",
+	"description": "The application for user to check the location info and weather forecast by selected date and time.",
+	"main": "index.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/KahChee/weather-forecast-and-traffic-cam.git"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/KahChee/weather-forecast-and-traffic-cam/issues"
+	},
+	"homepage": "https://github.com/KahChee/weather-forecast-and-traffic-cam#readme"
+}
