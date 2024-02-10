@@ -1,5 +1,5 @@
-import { Global, Module } from '@nestjs/common';
-import { TrafficCamService } from './trafficCam.service';
+import { Module } from '@nestjs/common';
+import { TrafficCamService } from './traffic-cam.service';
 import { HttpModule } from '@nestjs/axios';
 
 @Module({
