@@ -3,7 +3,7 @@ import { Url } from "url";
 export type SearchDateTime = `
     ${number}${number}${number}${number}-
     ${number}${number}-
-    ${number}${number}[T]
+    ${number}${number}T
     ${number}${number}:
     ${number}${number}:
     ${number}${number}` |
@@ -38,6 +38,6 @@ interface ApiInfo {
 }
 
 export interface TrafficCamResponse {
-    items: Item;
+    items: Item[];
     api_info: ApiInfo;
 }
