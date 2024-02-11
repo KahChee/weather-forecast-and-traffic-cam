@@ -72,3 +72,8 @@ export interface WeatherInfoResponse {
     valid_period: ValidPeriod;
     forecast: Forecast;
 }
+
+export interface CreateSearchRecordParams {
+    searchDateTime: SearchDateTime;
+    areaForecast: Forecast;
+}
