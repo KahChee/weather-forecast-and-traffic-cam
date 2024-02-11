@@ -12,7 +12,7 @@ interface LabelLocation {
     longitude: number;
 }
 
-export interface AreaMetadata {
+interface AreaMetadata {
     name: string;
     label_location: LabelLocation;
 }
@@ -42,4 +42,9 @@ export interface WeatherForecastResponse {
     area_metadata: AreaMetadata[];
     items: Item[];
     api_info: ApiInfo;
+}
+
+export interface AreaMetadataResponse {
+    timestamp: string;
+    areas: AreaMetadata[];
 }
