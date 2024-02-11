@@ -7,7 +7,7 @@ export class DatabaseService extends PrismaClient {
         super({
             datasources: {
                 db: {
-                    url: 'mysql://root:a6xK4eda5NfFqBXffiB4@localhost:3307/WeatherForecastAndTrafficCam'
+                    url: 'mysql://root:a6xK4eda5NfFqBXffiB4@localhost:3308/WeatherForecastAndTrafficCam'
                 }
             }
         });
