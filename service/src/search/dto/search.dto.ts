@@ -46,3 +46,29 @@ export interface Area {
     label_location: LabelLocation;
     proximity: number;
 }
+
+export class SearchWeatherInfoQueryParams {
+    @IsNotEmpty()
+    @Matches('^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}$')
+    searchDateTime: SearchDateTime;
+
+    @IsNotEmpty()
+    areaName: string;
+}
+
+interface ValidPeriod {
+    start: string;
+    end: string;
+}
+
+interface Forecast {
+    area: string;
+    forecast: string;
+}
+
+export interface WeatherInfoResponse {
+    update_timestamp: string;
+    timestamp: string;
+    valid_period: ValidPeriod;
+    forecast: Forecast;
+}

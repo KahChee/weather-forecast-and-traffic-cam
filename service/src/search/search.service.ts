@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { DatabaseService } from 'src/database/database.service';
 import { TrafficCamService } from 'src/traffic-cam/traffic-cam.service';
 import { WeatherForecastService } from 'src/weather-forecast/weather-forecast.service';
-import { Area, SearchDateTime, TrafficCam } from './dto';
+import { Area, SearchDateTime, SearchWeatherInfoQueryParams, TrafficCam, WeatherInfoResponse } from './dto';
 
 @Injectable()
 export class SearchService {
@@ -36,5 +36,17 @@ export class SearchService {
         });
 
         return trafficCam;
+    }
+
+    async getWeatherInfo({ searchDateTime, areaName }: SearchWeatherInfoQueryParams): Promise<WeatherInfoResponse> {
+        const weatherForecast = await this.weatherForecastService.getWeatherForecastData(searchDateTime);
+        const areaForecast = weatherForecast[0].forecasts
+            .find(forecast => forecast.area.toLowerCase() === areaName.toLowerCase());
+        const areaWeatherInfo = {
+            ...weatherForecast[0],
+            forecast: areaForecast
+        };
+        delete areaWeatherInfo.forecasts;
+        return areaWeatherInfo;
     }
 }
