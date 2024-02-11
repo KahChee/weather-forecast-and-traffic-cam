@@ -1,6 +1,6 @@
 import { Controller, Get, Query } from '@nestjs/common';
 import { SearchService } from './search.service';
-import { SearchLocationQueryParams, SearchWeatherInfoQueryParams } from './dto';
+import { SearchLocationQueryParams, SearchWeatherInfoQueryParams, WeatherInfoResponse } from './dto';
 
 @Controller('v1/search')
 export class SearchController {
@@ -13,8 +13,19 @@ export class SearchController {
     }
 
     @Get('weather-info')
-    getWeatherInfo(@Query() queryParams: SearchWeatherInfoQueryParams) {
+    async getWeatherInfo(@Query() queryParams: SearchWeatherInfoQueryParams) {
         const { searchDateTime, areaName } = queryParams;
-        return this.searchService.getWeatherInfo({ searchDateTime, areaName });
+        let weatherInfo: WeatherInfoResponse;
+
+        try {
+            weatherInfo = await this.searchService.getWeatherInfo({ searchDateTime, areaName });
+            return weatherInfo;
+        }
+        catch(e) {
+            console.error('Error in getWeatherInfo', e);
+        }
+        finally {
+            this.searchService.createSearchRecord({ searchDateTime, areaForecast: weatherInfo.forecast });
+        }
     }
 }

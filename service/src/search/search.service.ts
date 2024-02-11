@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { DatabaseService } from 'src/database/database.service';
 import { TrafficCamService } from 'src/traffic-cam/traffic-cam.service';
 import { WeatherForecastService } from 'src/weather-forecast/weather-forecast.service';
-import { Area, SearchDateTime, SearchWeatherInfoQueryParams, TrafficCam, WeatherInfoResponse } from './dto';
+import { Area, CreateSearchRecordParams, SearchDateTime, SearchWeatherInfoQueryParams, TrafficCam, WeatherInfoResponse } from './dto';
 
 @Injectable()
 export class SearchService {
@@ -48,5 +48,20 @@ export class SearchService {
         };
         delete areaWeatherInfo.forecasts;
         return areaWeatherInfo;
+    }
+
+    async createSearchRecord({ searchDateTime, areaForecast }: CreateSearchRecordParams): Promise<any> {
+        const searchTimestamp = Math.floor(new Date(new Date(searchDateTime).toISOString()).valueOf() / 1000);
+        const createdAt = Math.floor(Date.now() / 1000);
+
+        const result = await this.databaseService.searchHistory.create({
+            data: {
+                searchTimestamp,
+                location: JSON.parse(JSON.stringify(areaForecast)),
+                createdAt
+            }
+        });
+
+        return result;
     }
 }
