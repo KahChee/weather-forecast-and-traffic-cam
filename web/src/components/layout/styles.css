@@ -1,0 +1,17 @@
+.main-container {
+  display: flex;
+  position: relative;
+  width: 100%;
+  max-width: 70%;
+  height: 100%;
+  margin: auto;
+  padding: 60px 15px;
+  box-sizing: border-box;
+  flex-direction: column;
+}
+
+@media all and (max-width: 1024px) {
+  .main-container {
+    max-width: 100%;
+  }
+}
