@@ -1,0 +1,10 @@
+.not-found-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+.not-found-container strong {
+    font-size: 10vw;
+}
