@@ -1,0 +1,10 @@
+.react-datepicker-popper {
+  z-index: 9;
+}
+
+@media all and (max-width: 1024px) {
+  .search-date-picker-container {
+    display: flex;
+    justify-content: center;
+  }
+}
