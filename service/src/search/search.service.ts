@@ -18,22 +18,28 @@ export class SearchService {
             this.weatherForecastService.getAreaMetadata(searchDateTime)
         ]);
 
-        const trafficCam = trafficCamResponse[0].cameras.map((tc: TrafficCam) => {
-            let areas = [...areaMetadataResponse.areas];
-            areas = areas.map((area: Area) => {
-                area.proximity = Math.abs(tc.location.latitude - area.label_location.latitude) +
-                    Math.abs(tc.location.longitude - area.label_location.longitude);
-                return area;
+        const trafficCam = trafficCamResponse[0].cameras
+            .map((tc: TrafficCam) => {
+                let areas = [...areaMetadataResponse.areas];
+                areas = areas.map((area: Area) => {
+                    area.proximity = Math.abs(tc.location.latitude - area.label_location.latitude) +
+                        Math.abs(tc.location.longitude - area.label_location.longitude);
+                    return area;
+                });
+
+                const area = areas.reduce((finalAreaObj: Area, areaObj: Area) => {
+                    if (areaObj.proximity < finalAreaObj.proximity) finalAreaObj = areaObj;
+                    return finalAreaObj;
+                }, { ...areas[0] });
+                tc.name = area.name;
+
+                return tc;
+            })
+            .sort((currTc: TrafficCam, nextTc: TrafficCam) => {
+                if (currTc.name < nextTc.name) return -1;
+                if (currTc.name > nextTc.name) return 1;
+                else return 0;
             });
-
-            const area = areas.reduce((finalAreaObj: Area, areaObj: Area) => {
-                if (areaObj.proximity < finalAreaObj.proximity) finalAreaObj = areaObj;
-                return finalAreaObj;
-            }, { ...areas[0] });
-            tc.name = area.name;
-
-            return tc;
-        });
 
         return trafficCam;
     }
