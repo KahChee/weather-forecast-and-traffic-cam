@@ -2,6 +2,7 @@ const padStartZero = (value) => {
   return value.toString().padStart(2, '0');
 };
 
+// Format dateTime into string with format yyyy-MM-dd[T]hh:mm:ss
 const formatDateTime = (dateTime) => {
   const dateTimeString =
     `${dateTime.getFullYear()}-` +
