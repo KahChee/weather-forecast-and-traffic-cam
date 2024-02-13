@@ -1,4 +1,6 @@
 /**
+ * Fetch user api request
+ * 
  * @param {String} url
  * @param {String} method
  * @param {Object} extraHeaders
