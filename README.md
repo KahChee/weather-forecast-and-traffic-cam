@@ -23,7 +23,7 @@ docker --version
 # You should see a message like this, Docker version 25.0.2, build 29cf629
 ```
 
-3. Start docker database service
+3. Start docker database service.
 ```
 cd weather-forecast-and-traffic-cam
 docker compose up weather-forecast-and-traffic-cam-database -d
@@ -40,7 +40,7 @@ npm install
 DATABASE_URL
 ```
 
-6. Run database table migration
+6. Run database table migration.
 ```
 npx prisma migrate dev
 ```
