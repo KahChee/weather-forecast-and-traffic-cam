@@ -1,0 +1,15 @@
+version: '3.8'
+services:
+    weather-forecast-and-traffic-cam-database:
+        image: mysql:latest
+        ports:
+            - 3308:3306
+        environment:
+            MYSQL_USER: ufinity_admin
+            MYSQL_PASSWORD: 7UjLNsw6tMkTvcizcErt
+            MYSQL_ROOT_PASSWORD: a6xK4eda5NfFqBXffiB4
+            MYSQL_DATABASE: WeatherForecastAndTrafficCam
+        networks:
+            - weather-forecast-and-traffic-cam
+networks:
+    weather-forecast-and-traffic-cam:
