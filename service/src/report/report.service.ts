@@ -97,10 +97,20 @@ export class ReportService {
         const mostSearchResult = Object.entries(mostSearchMap)
             .filter(([, count]) => count === maxCount)
             .reduce((mostSearchRecord, [timeStamp, count]) => {
+                let dateTime = new Date(+timeStamp * 1000);
+                let dateTimeString =
+                    `${dateTime.getFullYear()}-` +
+                    `${(dateTime.getMonth() + 1).toString().padStart(2, '0')}-` +
+                    `${dateTime.getDate().toString().padStart(2, '0')}T` +
+                    `${dateTime.getHours().toString().padStart(2, '0')}:` +
+                    `${dateTime.getMinutes().toString().padStart(2, '0')}:` +
+                    `${dateTime.getSeconds().toString().padStart(2, '0')}`;
+
                 mostSearchRecord.push({
-                    dateTime: new Date(+timeStamp * 1000).toLocaleString(),
+                    dateTime: dateTimeString,
                     count
                 });
+
                 return mostSearchRecord;
             }, []);
 
