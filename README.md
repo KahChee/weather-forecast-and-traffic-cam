@@ -3,6 +3,10 @@ The application for user to check the location info and weather forecast by sele
 
 ## Getting Set Up
 
+### Documentation
+
+https://docs.google.com/document/d/1r2ngjiA9tIeGZ5D3ijZPI6qP5j5Cdpj_/edit?usp=sharing&ouid=104714339288592552409&rtpof=true&sd=true
+
 ### Prerequisites
 
 * Ensure you have recent versions of `node`, `npm` and `docker` installed.
