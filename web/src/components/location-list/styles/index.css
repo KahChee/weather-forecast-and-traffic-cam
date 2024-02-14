@@ -1,0 +1,39 @@
+.swiper.location-swiper {
+  width: 100%;
+  height: calc(100% - 50px);
+  margin: 25px auto;
+}
+.swiper-slide {
+  cursor: pointer;
+}
+.swiper-slide.selected > .location-overlay {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  border: 4px solid #000000;
+  box-sizing: border-box;
+  transition: border 300ms ease-out;
+}
+.swiper-slide > .location-image {
+  background-size: cover;
+  width: 100%;
+  padding-top: 56.25%;
+}
+.swiper-slide > .location-details {
+  margin-top: 5px;
+  transition: margin-left 300ms ease-out;
+}
+.swiper-slide.selected > .location-details {
+  margin: 5px 8px 8px;
+}
+.location-details-container {
+  margin: 30px auto;
+}
+
+@media all and (max-width: 1024px) {
+  .swiper.location-swiper {
+    height: calc(100% - 30px);
+  }
+}

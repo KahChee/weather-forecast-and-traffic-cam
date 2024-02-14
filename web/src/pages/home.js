@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import Layout from '../components/layout';
 import SearchDatePicker from '../components/search-date-picker';
+import LocationList from '../components/location-list';
 import fetchApi from '../utils/fetch-api';
 import formatDateTime from '../utils/format-date-time';
 
@@ -25,6 +26,7 @@ const Home = () => {
   return (
     <Layout>
       <SearchDatePicker searchDateTime={searchDateTime} handleOnChange={handleDateTimeChange} />
+      <LocationList searchDateTimeString={searchDateTimeString} locations={locations} />
     </Layout>
   );
 }
