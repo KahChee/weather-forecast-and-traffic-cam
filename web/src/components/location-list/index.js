@@ -10,11 +10,20 @@ import './styles/index.css';
 
 const LocationList = ({ searchDateTimeString, locations = [] }) => {
   const [locationInfo, setLocationInfo] = useState(undefined);
+  const [, setWeatherInfo] = useState(undefined);
 
   const handleLocationClick = async (event) => {
     const cameraId = event.target.getAttribute('camera-id');
     const selectedLocation = locations.find(location => location.camera_id === cameraId);
     setLocationInfo(selectedLocation);
+
+    if (searchDateTimeString && selectedLocation.name && !selectedLocation.weatherInfo) {
+      const locationWeatherInfo = await fetchApi({
+        url: `v1/search/weather-info?searchDateTime=${searchDateTimeString}&areaName=${selectedLocation.name}`
+      });
+      selectedLocation.weatherInfo = locationWeatherInfo;
+      setWeatherInfo(locationWeatherInfo);
+    }
   };
 
   return (
@@ -70,6 +79,9 @@ const LocationList = ({ searchDateTimeString, locations = [] }) => {
                 ></div>
                 <div className="location-details">
                   <strong camera-id={location.camera_id}>{location.name}</strong>
+                  { location?.weatherInfo?.forecast?.forecast &&
+                    <span>, is <strong>{location.weatherInfo.forecast.forecast}</strong>!</span>
+                  }
                 </div>
               </SwiperSlide>
             );
